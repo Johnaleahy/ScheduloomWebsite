@@ -28,6 +28,10 @@ body {
     transition: box-shadow 0.3s ease;
 }
 
+.navbar-scrolled {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 .mobile-menu-toggle {
     display: none;
     flex-direction: column;
@@ -198,7 +202,9 @@ body {
 }
 
 .tagline-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     background-color: #ffeaa7;
     color: #000;
     padding: 10px 24px;
@@ -207,6 +213,12 @@ body {
     font-weight: 500;
     width: fit-content;
     animation: fadeIn 0.8s ease-out 0.2s both;
+}
+
+.tagline-logo {
+    height: 24px;
+    width: auto;
+    object-fit: contain;
 }
 
 .hero-headline {
@@ -291,16 +303,24 @@ body {
 }
 
 .logo-item {
-    font-size: 26px;
-    font-weight: 600;
-    color: #999;
-    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
     transition: all 0.3s ease;
-    letter-spacing: -0.5px;
+}
+
+.logo-item img {
+    max-height: 60px;
+    max-width: 180px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
 }
 
 .logo-item:hover {
-    opacity: 0.8;
+    opacity: 1;
     transform: translateY(-2px);
 }
 
@@ -308,72 +328,74 @@ body {
 .footer {
     background-color: #1a1a1a;
     color: #fff;
-    padding: 60px 60px 30px;
+    padding: 80px 60px;
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 60px;
-    max-width: 1400px;
-    margin: 0 auto 50px;
-}
-
-.footer-section h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: #fff;
-}
-
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section li {
-    margin-bottom: 12px;
-}
-
-.footer-section a {
-    text-decoration: none;
-    color: #999;
-    font-size: 14px;
-    transition: color 0.3s ease;
-}
-
-.footer-section a:hover {
-    color: #fff;
-}
-
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
     max-width: 1400px;
     margin: 0 auto;
-    padding-top: 30px;
-    border-top: 1px solid #333;
 }
 
-.footer-bottom p {
-    color: #666;
-    font-size: 14px;
-}
-
-.social-links {
+.footer-card {
+    background-color: #fff;
+    color: #000;
+    padding: 40px;
+    border-radius: 12px;
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.social-links a {
-    color: #999;
+.footer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.footer-card h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+}
+
+.footer-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.footer-card-link {
     text-decoration: none;
-    font-size: 20px;
-    transition: color 0.3s ease;
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+    transition: gap 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.social-links a:hover {
-    color: #fff;
+.footer-card-link:hover {
+    gap: 12px;
+}
+
+/* Fade-in animations */
+.fade-in-initial {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Responsive Design */
@@ -399,9 +421,13 @@ body {
         padding: 20px 40px;
     }
 
+    .footer {
+        padding: 60px 40px;
+    }
+
     .footer-content {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 40px;
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
 
     .trusted-by {
@@ -471,23 +497,22 @@ body {
         gap: 30px;
     }
 
-    .logo-item {
-        font-size: 22px;
+    .logo-item img {
+        max-height: 50px;
+        max-width: 150px;
     }
 
     .footer {
-        padding: 40px 30px 20px;
+        padding: 50px 30px;
     }
 
     .footer-content {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 25px;
     }
 
-    .footer-bottom {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
+    .footer-card {
+        padding: 30px;
     }
 
     .trusted-by {
@@ -501,8 +526,12 @@ body {
     }
 
     .tagline-badge {
-        font-size: 11px;
-        padding: 7px 16px;
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+
+    .tagline-logo {
+        height: 20px;
     }
 
     .nav-left,
@@ -517,5 +546,17 @@ body {
 
     .hero-image {
         max-width: 220px;
+    }
+
+    .footer-card {
+        padding: 25px;
+    }
+
+    .footer-card h3 {
+        font-size: 20px;
+    }
+
+    .footer-card p {
+        font-size: 14px;
     }
 }
