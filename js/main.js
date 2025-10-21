@@ -4,7 +4,12 @@
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navbar = document.querySelector('.navbar');
 
-if (mobileMenuToggle) {
+// Early guard: ensure critical elements exist
+if (!navbar) {
+    console.warn('Navbar element not found. Some features may not work.');
+}
+
+if (mobileMenuToggle && navbar) {
     mobileMenuToggle.addEventListener('click', () => {
         navbar.classList.toggle('mobile-active');
         mobileMenuToggle.classList.toggle('active');
@@ -12,14 +17,16 @@ if (mobileMenuToggle) {
 }
 
 // Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-item a, .nav-right a').forEach(link => {
-    link.addEventListener('click', () => {
-        navbar.classList.remove('mobile-active');
-        if (mobileMenuToggle) {
-            mobileMenuToggle.classList.remove('active');
-        }
+if (navbar) {
+    document.querySelectorAll('.nav-item a, .nav-right a').forEach(link => {
+        link.addEventListener('click', () => {
+            navbar.classList.remove('mobile-active');
+            if (mobileMenuToggle) {
+                mobileMenuToggle.classList.remove('active');
+            }
+        });
     });
-});
+}
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -39,19 +46,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Add scroll effect to navbar
-let lastScroll = 0;
+if (navbar) {
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > 50) {
-        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-    } else {
-        navbar.style.boxShadow = 'none';
-    }
-
-    lastScroll = currentScroll;
-});
+        if (currentScroll > 50) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
+    }, { passive: true });
+}
 
 // Intersection Observer for fade-in animations
 const observerOptions = {
@@ -62,17 +67,19 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            // Add visible class to trigger CSS animation
+            entry.target.classList.add('fade-in-visible');
+            entry.target.classList.remove('fade-in-initial');
+            // Stop observing this element to improve performance
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
 // Observe elements for animation
-document.querySelectorAll('.logo-item, .footer-section').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+document.querySelectorAll('.logo-item, .footer-card').forEach(el => {
+    // Apply initial hidden state via CSS class
+    el.classList.add('fade-in-initial');
     observer.observe(el);
 });
 
