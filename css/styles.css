@@ -229,6 +229,14 @@ body {
     letter-spacing: -1.2px;
 }
 
+.hero-subheadline {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #666;
+    max-width: 600px;
+}
+
 .cta-button-large {
     background-color: #000;
     color: #fff;
@@ -319,6 +327,11 @@ body {
     filter: grayscale(100%);
 }
 
+.logo-item-large img {
+    max-height: 80px;
+    max-width: 220px;
+}
+
 .logo-item:hover {
     opacity: 1;
     transform: translateY(-2px);
@@ -371,6 +384,32 @@ body {
     flex-grow: 1;
 }
 
+.footer-card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-card-list li {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #666;
+    padding-left: 24px;
+    position: relative;
+}
+
+.footer-card-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #00AA00;
+    font-weight: bold;
+    font-size: 16px;
+}
+
 .footer-card-link {
     text-decoration: none;
     color: #000;
@@ -384,6 +423,136 @@ body {
 
 .footer-card-link:hover {
     gap: 12px;
+}
+
+/* Footer Bottom Section */
+.footer-bottom {
+    background-color: #000;
+    padding: 40px 60px;
+    text-align: center;
+}
+
+.footer-bottom-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-brand {
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.footer-company {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ccc;
+    margin: 8px 0 0 0;
+}
+
+.footer-address {
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Lead Form Section */
+.lead-form-section {
+    padding: 80px 60px;
+    background-color: #1a1a1a;
+}
+
+.lead-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 60px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.lead-form-headline {
+    font-size: 32px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 40px;
+    text-align: center;
+    letter-spacing: -0.8px;
+}
+
+.lead-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group select {
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+    background-color: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #000;
+}
+
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+
+.form-submit-button {
+    background-color: #000;
+    color: #fff;
+    padding: 18px 40px;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 16px;
+}
+
+.form-submit-button:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Fade-in animations */
@@ -433,6 +602,18 @@ body {
     .trusted-by {
         padding: 60px 40px 80px;
     }
+
+    .lead-form-section {
+        padding: 60px 40px;
+    }
+
+    .lead-form-container {
+        padding: 40px;
+    }
+
+    .footer-bottom {
+        padding: 30px 40px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -474,6 +655,10 @@ body {
     .hero-headline {
         font-size: 29px;
         letter-spacing: -0.8px;
+    }
+
+    .hero-subheadline {
+        font-size: 16px;
     }
 
     .hero-text {
@@ -518,11 +703,55 @@ body {
     .trusted-by {
         padding: 50px 30px 60px;
     }
+
+    .lead-form-section {
+        padding: 50px 30px;
+    }
+
+    .lead-form-container {
+        padding: 30px;
+    }
+
+    .lead-form-headline {
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .form-submit-button {
+        width: 100%;
+        padding: 16px 32px;
+        font-size: 16px;
+    }
+
+    .footer-bottom {
+        padding: 30px 30px;
+    }
+
+    .footer-brand {
+        font-size: 20px;
+    }
+
+    .footer-company {
+        font-size: 14px;
+    }
+
+    .footer-address {
+        font-size: 13px;
+    }
 }
 
 @media (max-width: 480px) {
     .hero-headline {
         font-size: 26px;
+    }
+
+    .hero-subheadline {
+        font-size: 14px;
     }
 
     .tagline-badge {
@@ -558,5 +787,44 @@ body {
 
     .footer-card p {
         font-size: 14px;
+    }
+
+    .footer-card-list li {
+        font-size: 13px;
+    }
+
+    .lead-form-container {
+        padding: 25px;
+    }
+
+    .lead-form-headline {
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    .footer-bottom {
+        padding: 25px 20px;
+    }
+
+    .footer-brand {
+        font-size: 18px;
+    }
+
+    .footer-company {
+        font-size: 13px;
+    }
+
+    .footer-address {
+        font-size: 12px;
     }
 }
